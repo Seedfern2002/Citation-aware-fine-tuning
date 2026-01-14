@@ -1,0 +1,24 @@
+[project]
+name = "alce-citation"
+version = "0.1.0"
+description = "SFT for citation-aware LLMs using ALCE"
+requires-python = ">=3.10"
+
+dependencies = [
+  "torch>=2.1",
+  "transformers>=4.39",
+  "accelerate>=0.27",
+  "datasets",
+  "sentencepiece",
+  "tqdm",
+  "pyyaml",
+  "wandb", 
+  "nltk"     
+]
+
+[tool.uv]
+dev-dependencies = [
+  "black",
+  "isort",
+  "ruff"
+]
