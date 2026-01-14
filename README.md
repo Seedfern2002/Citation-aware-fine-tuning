@@ -8,10 +8,13 @@ This repository implements a supervised fine-tuning (SFT) pipeline for training 
 
 ### `utils/prepare_dataset.py`
 
-Constructs a citation-aware SFT dataset by determining whether documents support each answer or claim.
+Constructs a citation-aware SFT dataset by determining whether documents support each answer or claim using ELI5 and QAMPari dataset. 
 
 **Usage**
 
+**Notes**
+- Because the data composed of 100 chunks would be too long (>10000 tokens) for fine-tuning, this code will only randomly sample 10 chunks to construct data.
+- 
 ```bash
 python utils/prepare_dataset.py \
   --input_files data/raw/ALCE/data/eli5_eval_bm25_top100.json data/raw/ALCE/data/qampari_eval_gtr_top100.json \
@@ -23,7 +26,7 @@ python utils/prepare_dataset.py \
 
 ### `utils/prepare_dataset_oracle.py`
 
-Constructs an SFT dataset using **only oracle passages** from ALCE.
+Constructs an SFT dataset using **only oracle files** from ALCE.
 
 **Notes**
 - The generated dataset may be biased, since oracle files contain only the top-5 matching documents.
@@ -53,11 +56,9 @@ SLURM submission script for distributed training of Qwen/Qwen3-1.7B.
 
 **Usage**
 ```bash
+uv -sync
+```
+```bash
 sbatch scripts/fine_tune_qwen3.slurm
 ```
-
-**Expected environment**
-- CUDA 12.6
-- A100 GPUs
-- SLURM scheduler
 
