@@ -39,7 +39,7 @@ def main():
     parser.add_argument("--train_file", type=str, required=True)
     parser.add_argument("--output_dir", type=str, required=True)
 
-    parser.add_argument("--max_length", type=int, default=4096)
+    parser.add_argument("--max_length", type=int, default=2048)
     parser.add_argument("--num_train_epochs", type=int, default=3)
     parser.add_argument("--per_device_train_batch_size", type=int, default=1)
     parser.add_argument("--gradient_accumulation_steps", type=int, default=8)
@@ -48,6 +48,8 @@ def main():
     parser.add_argument("--logging_steps", type=int, default=10)
     parser.add_argument("--save_steps", type=int, default=500)
     parser.add_argument("--bf16", action="store_true")
+
+    parser.add_argument("--run_name", type=str, default="qwen3-alce-sft")
 
     args = parser.parse_args()
 
@@ -95,7 +97,8 @@ def main():
         remove_unused_columns=False,
 
         ddp_find_unused_parameters=False,
-        report_to="none",  
+        report_to="wandb",
+        run_name=args.run_name,
 
         logging_first_step=True,
     )
