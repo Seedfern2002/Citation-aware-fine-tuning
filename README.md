@@ -14,7 +14,6 @@ Constructs a citation-aware SFT dataset by determining whether documents support
 
 **Notes**
 - Because the data composed of 100 chunks would be too long (>10000 tokens) for fine-tuning, this code will only randomly sample 10 chunks to construct data.
-- 
 ```bash
 python utils/prepare_dataset.py \
   --input_files data/raw/ALCE/data/eli5_eval_bm25_top100.json data/raw/ALCE/data/qampari_eval_gtr_top100.json \
