@@ -55,9 +55,6 @@ SLURM submission script for distributed training of Qwen/Qwen3-1.7B.
 
 **Usage**
 ```bash
-uv -sync
-```
-```bash
 sbatch scripts/fine_tune_qwen3.slurm
 ```
 
